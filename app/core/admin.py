@@ -1,3 +1,3 @@
-from django.contrib import admin # noqa
+from django.contrib import admin # Dnoqa
 
 # Register your models here.
