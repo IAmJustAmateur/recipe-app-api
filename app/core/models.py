@@ -68,5 +68,5 @@ class Tag(models.Model):
         on_delete=models.CASCADE,
     )
 
-    def str(self):
+    def __str__(self):
         return self.name
