@@ -96,7 +96,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-    def test_detail_recipe_detail(self):
+    def test_get_recipe_detail(self):
         """Test get recipe detail."""
         recipe = create_recipe(user=self.user)
         url = detail_url(recipe.id)
@@ -169,7 +169,7 @@ class PrivateRecipeApiTests(TestCase):
         new_user = create_user(email='user2@example.com', password='test123')
         recipe = create_recipe(user=self.user)
 
-        payload = { 'user': new_user.id }
+        payload = {'user': new_user.id }
         url = detail_url(recipe.id)
         self.client.patch(url, payload)
 
@@ -177,11 +177,11 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(recipe.user, self.user)
 
     def test_delete_recipe(self):
-        """Test deleting recipe successfull."""
+        """Test deleting a recipe successfull."""
         recipe = create_recipe(user=self.user)
 
         url = detail_url(recipe.id)
-        res=self.client.delete(url)
+        res = self.client.delete(url)
 
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Recipe.objects.filter(id=recipe.id).exists())
@@ -294,7 +294,7 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.post(RECIPES_URL, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-        recipes = Recipe.objects.filter(user = self.user)
+        recipes = Recipe.objects.filter(user=self.user)
         self.assertEqual(recipes.count(), 1)
         recipe = recipes[0]
         self.assertEqual(recipe.ingredients.count(), 2)
@@ -317,7 +317,7 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.post(RECIPES_URL, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-        recipes = Recipe.objects.filter(user = self.user)
+        recipes = Recipe.objects.filter(user=self.user)
         self.assertEqual(recipes.count(), 1)
         recipe = recipes[0]
         self.assertEqual(recipe.ingredients.count(), 2)

@@ -14,7 +14,7 @@ class UserManager(BaseUserManager):
     """Manager for users."""
 
     def create_user(self, email, password=None, **extra_fields):
-        """Create, save and return new user."""
+        """Create, save and return a new user."""
         if not email:
             raise ValueError('User must have an email address.')
         user = self.model(email=self.normalize_email(email), **extra_fields)
@@ -44,6 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
+
 class Recipe(models.Model):
     """Recipe object."""
     user = models.ForeignKey(
@@ -58,7 +59,7 @@ class Recipe(models.Model):
     tags = models.ManyToManyField('Tag')
     ingredients = models.ManyToManyField('Ingredient')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
 
 class Tag(models.Model):

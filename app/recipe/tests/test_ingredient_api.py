@@ -85,7 +85,7 @@ class PrivateIngredientApiTests(TestCase):
         self.assertEqual(ingredient.name, payload['name'])
 
     def test_delete_ingredient(self):
-        """Test delete ingredient."""
+        """Test deleting an ingredient."""
         ingredient = Ingredient.objects.create(user=self.user, name='Lettuce')
 
         url = detail_url(ingredient.id)

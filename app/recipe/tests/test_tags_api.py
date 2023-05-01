@@ -86,7 +86,7 @@ class PrivateTagsApiTests(TestCase):
 
     def test_delete_tag(self):
         """Test deleting a tag."""
-        tag = Tag.objects.all().create(user=self.user, name='Breakfast')
+        tag = Tag.objects.create(user=self.user, name='Breakfast')
 
         url = detail_url(tag.id)
         res = self.client.delete(url)
