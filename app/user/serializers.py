@@ -11,7 +11,7 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Serializer for the user object"""
+    """Serializer for the user object."""
 
     class Meta:
         model = get_user_model()
@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
 
     def create(self, validated_data):
-        """create and return a user with encripted password."""
+        """Create and return a user with encrypted password."""
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
@@ -52,7 +52,8 @@ class AuthTokenSerializer(serializers.Serializer):
             password=password,
         )
         if not user:
-            msg = _('Unable authenticate with provided credentials.')
+            msg = _('Unable to authenticate with provided credentials.')
             raise serializers.ValidationError(msg, code='authorization')
+        
         attrs['user'] = user
         return attrs

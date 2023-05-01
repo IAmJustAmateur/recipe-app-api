@@ -1,5 +1,5 @@
 """
-Tests for ingredients APIs.
+Tests for the ingredients API.
 """
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -22,12 +22,12 @@ def detail_url(ingredient_id):
 
 
 def create_user(email='user@example.com', password='testpass123'):
-    """Create and return a user."""
+    """Create and return user."""
     return get_user_model().objects.create_user(email=email, password=password)
 
 
 class PublicIngredientsApiTests(TestCase):
-    """Test unauthenticated Api request."""
+    """Test unauthenticated API request."""
 
     def setUp(self):
         self.client = APIClient()
@@ -39,7 +39,7 @@ class PublicIngredientsApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PrivateIngredientApiTests(TestCase):
+class PrivateIngredientsApiTests(TestCase):
     """Test authenticated API requests."""
 
     def setUp(self):
