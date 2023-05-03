@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   app:
@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app'
+      - ./app:/app
       - dev-static-data:/vol/web
     command: >
       sh -c "python manage.py wait_for_db &&
@@ -33,5 +33,5 @@ services:
       - POSTGRES_PASSWORD=changeme
 
 volumes:
-    dev-db-data:
-    dev-static-data:
+  dev-db-data:
+  dev-static-data:
