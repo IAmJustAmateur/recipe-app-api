@@ -2,6 +2,7 @@
 Tests for the tags API.
 """
 from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.test import TestCase
@@ -11,7 +12,7 @@ from rest_framework.test import APIClient
 
 from core.models import (
     Tag,
-    Recipe
+    Recipe,
 )
 
 from recipe.serializers import TagSerializer
@@ -31,7 +32,7 @@ def create_user(email='user@example.com', password='testpass123'):
 
 
 class PublicTagsApiTests(TestCase):
-    """Test unauthenticated API request."""
+    """Test unauthenticated API requests."""
 
     def setUp(self):
         self.client = APIClient()
@@ -99,7 +100,7 @@ class PrivateTagsApiTests(TestCase):
         tags = Tag.objects.filter(user=self.user)
         self.assertFalse(tags.exists())
 
-    def test_filter_tag_assigned_to_recipes(self):
+    def test_filter_tags_assigned_to_recipes(self):
         """Test listing of tags to those assigned to recipes."""
         tag1 = Tag.objects.create(user=self.user, name='Breakfast')
         tag2 = Tag.objects.create(user=self.user, name='Lunch')
@@ -118,7 +119,7 @@ class PrivateTagsApiTests(TestCase):
         self.assertIn(s1.data, res.data)
         self.assertNotIn(s2.data, res.data)
 
-    def test_filtering_tag_unique(self):
+    def test_filteried_tags_unique(self):
         """Test filtered tags returns a unique list."""
         tag = Tag.objects.create(user=self.user, name='Breakfast')
         Tag.objects.create(user=self.user, name='Dinner')
