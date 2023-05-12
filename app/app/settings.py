@@ -28,12 +28,12 @@ DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 #ALLOWED_HOSTS = ['ec2-3-212-229-191.compute-1.amazonaws.com', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS.extend(
+""" ALLOWED_HOSTS.extend(
     filter(
         None,
         os.environ.get('ALLOWED_HOSTS', '').split(','),
     )
-)
+) """
 
 
 # Application definition
